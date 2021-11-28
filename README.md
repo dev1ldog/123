@@ -344,6 +344,8 @@ globalmenu:
 		for (i = 1; i <= x; i++)
 			cout << "*";
 		cout << endl;
+		system("pause");
+		goto globalmenu;
 	}
 	case 4: {
 		if (GLOBALMENU == 4) {
@@ -898,6 +900,7 @@ globalmenu:
 			cout << endl;
 		}
 		system("pause");
+		goto globalmenu;
 	}
 	
 	case 8: {
@@ -951,7 +954,7 @@ globalmenu:
 		int a;
 	Maze:
 		system("cls");
-		cout << "Вы зашли в игру THE MAZE\n";
+		cout << "Вы зашли  THE MAZE\n";
 		cout << "Выберите сложность\n";
 		cout << "[1] Easy - \n";
 		cout << "[2] Medium - \n";
@@ -1028,6 +1031,7 @@ globalmenu:
 				}
 				cout  << endl;
 			}
+			system("Pause");
 			goto Maze;
 		}
 		else if (a == 3) {
@@ -1035,7 +1039,7 @@ globalmenu:
 			int labirint1[30][30] = {
 			
 			{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,},
-			{0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0,},
+			{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,},
 			{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0,},
 			{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,},
 			{0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0,},
@@ -1076,6 +1080,7 @@ globalmenu:
 				}
 				cout << endl;
 			}
+			system("Pause");
 			goto Maze;
 		}
 		else if (a == 4) {
@@ -1091,22 +1096,182 @@ globalmenu:
 	 }
 	}
 	case 11: {
-		cout << "Work in progress";
+	 krestikinuliki:
+		system("cls");
+		
+		const int X = 3;
+		int x;
+		int y; 
+		int check;
+		int firstturn;
+		char A[X][X], c, z;
+		string s, a, b;
+		a = "НОЛИКИ";
+		b = "КРЕСТИКИ";
+		z = '0';
+		c = 'X';
+		cout << "Игра крестики-нолики:" << endl;
+
+		cout << "За кого ходит первый игрок?(введите цифру):";
+		cout << "0: 1\n";
+		cout << "X: 2";
+		cout << "Цифра: ";
+		cin >> firstturn;
+		system("cls");
+		for (int i = 0; i < X; i++)
+		{
+			for (int j = 0; j < X; j++)
+			{
+				A[i][j] = '#';
+				cout << A[i][j] << " ";
+			}
+			cout << endl;
+		}
+		for (int i = 0; i < 9; i++)
+		{
+			if ((!(i % 2)) && (firstturn == 1)) s = a;
+			if ((!(i % 2)) && (firstturn == 2)) s = b;
+			if ((i % 2) && (firstturn == 1)) s = b;
+			if ((i % 2) && (firstturn == 2)) s = a;
+		turn:
+			
+			cout << "\t\tСделайте ваш ход (" << s << ")" << endl;
+			cout << "\t\tСтрока: ";
+			cin >> x;
+			cout << "\t\tСтолбец: ";
+			cin >> y;
+			x--;
+			y--;
+			if (A[x][y] != '#')
+			{
+				system("cls");
+				for (int i = 0; i < X; i++)
+				{
+					for (int j = 0; j < X; j++)
+					{
+						cout << A[i][j]  << " ";
+					}
+					cout << endl;
+				}
+				cout << "Данная позиция занята!" << endl;
+				goto turn;
+			}
+			if ((!(i % 2)) && (firstturn == 1)) A[x][y] = z;
+			if ((!(i % 2)) && (firstturn == 2)) A[x][y] = c;
+			if ((i % 2) && (firstturn == 1)) A[x][y] = c;
+			if ((i % 2) && (firstturn == 2)) A[x][y] = z;
+			system("cls");
+			check = 0;
+			for (int i = 0; i < X; i++)
+			{
+				for (int j = 0; j < X; j++)
+				{
+					cout << A[i][j] << " ";
+				}
+				cout << endl;
+			}
+			if (((A[0][0] == '0') && (A[0][1] == '0') && (A[0][2] == '0')) ||
+				((A[1][0] == '0') && (A[1][1] == '0') && (A[1][2] == '0')) ||
+				((A[2][0] == '0') && (A[2][1] == '0') && (A[2][2] == '0')) ||
+				((A[0][0] == '0') && (A[1][0] == '0') && (A[2][0] == '0')) ||
+				((A[0][1] == '0') && (A[1][1] == '0') && (A[2][1] == '0')) ||
+				((A[0][2] == '0') && (A[1][2] == '0') && (A[2][2] == '0')) ||
+				((A[0][0] == '0') && (A[1][1] == '0') && (A[2][2] == '0')) ||
+				((A[2][0] == '0') && (A[1][1] == '0') && (A[0][2] == '0')) ||
+				((A[0][0] == 'X') && (A[0][1] == 'X') && (A[0][2] == 'X')) ||
+				((A[1][0] == 'X') && (A[1][1] == 'X') && (A[1][2] == 'X')) ||
+				((A[2][0] == 'X') && (A[2][1] == 'X') && (A[2][2] == 'X')) ||
+				((A[0][0] == 'X') && (A[1][0] == 'X') && (A[2][0] == 'X')) ||
+				((A[0][1] == 'X') && (A[1][1] == 'X') && (A[2][1] == 'X')) ||
+				((A[0][2] == 'X') && (A[1][2] == 'X') && (A[2][2] == 'X')) ||
+				((A[0][0] == 'X') && (A[1][1] == 'X') && (A[2][2] == 'X')) ||
+				((A[2][0] == 'X') && (A[1][1] == 'X') && (A[0][2] == 'X')))
+			{
+				check++;
+				
+				if ((A[x][y] == z) && (firstturn == 1)) cout <<  " Победили Нолики!" << endl;
+				if ((A[x][y] == c) && (firstturn == 2)) cout <<  " Победили Крестики !" << endl;
+				if ((A[x][y] == c) && (firstturn == 1)) cout <<  " Победили Крестики !" << endl;
+				if ((A[x][y] == z) && (firstturn == 2)) cout <<  " Поюедили Нолики!" << endl;
+				break;
+			}
+		}
+		if (!(check)) cout << "Игра закончилась вничью!" << endl;
+		system("pause");
+		goto krestikinuliki;
 	}
 	case 12: {
+		settings:
 		int color = 0;
-		cout << " Здесь вы можете выбрать только цвет ФОНА и ТЕКСТА";
-		cout << "[1]";
-		cout << "[2]";
-		cout << "[3]";
-		cout << "[4]";
-		cout << "[5]";
-		cout << "[6]";
+		system("cls");
+		cout << " Здесь вы можете выбрать только цвет ФОНА и ТЕКСТА\n";
+		cout << "[1]Синий Фон, Зеленый текст\n";
+		cout << "[2]Синий Фон, Голубой текст \n";
+		cout << "[3]Синий Фон, Красный текст\n";
+		cout << "[4]Зеленый Фон\n";
+		cout << "[5]Зеленый Фон\n";
+		cout << "[6]Зеленый Фон, Красный текст\n";
+		cout << "[7]Голубой Фон, зеленый текст\n";
+		cout << "[8]Голубой Фон, Голубой текст\n";
+		cout << "[9] Голубой Фон, Красный текст\n";
+		cout << "[10]Черный Фон, Белый текст\n";
+		cout << "[11]Черный Фон, Зеленый текст\n";
+		cout << "[12]Вернуться в меню\n";
 		cin >> color;
 		if (color == 1) {
-			system("color 20");
+			system("color 1A");
+			goto settings;
+		}
+		if (color == 2){
+			system("color 1B");
+			goto settings;
+		}
+		if (color == 3) {
+			system("color 1C");
+			goto settings;
+		}
+		if (color == 4) {
+			system("color 2A");
+			goto settings;
+		}
+		if (color == 5) {
+			system("color 2B");
+			goto settings;
+		}
+		if (color == 6) {
+			system("color 2C");
+			goto settings;
+		}
+		if (color == 7) {
+			system("color 3A");
+			goto settings;
+		}
+		if (color == 8) {
+			system("color 3B");
+			goto settings;
+		}
+		if (color == 9) {
+			system("color 3C");
+			goto settings;
+		}
+		if (color == 10) {
+			system("color 0F");
+			goto settings;
+		}
+		if (color == 11) {
+			system("color 0A");
+			goto settings;
+		}
+		if (color == 12) {
+			goto globalmenu;
 		}
 		
+		if (color > 12) {
+			system("cls");
+			cout << "Неверное значение!!!";
+				system("pause");
+				goto settings;
+		}
 	}
 	case 13: {
 		if (GLOBALMENU == 13) {
